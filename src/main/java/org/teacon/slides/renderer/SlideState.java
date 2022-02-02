@@ -41,6 +41,7 @@ public final class SlideState {
         Field IMAGE_POINTER1;
         try {
             IMAGE_POINTER1 = NativeImage.class.getDeclaredField("pixels");
+            IMAGE_POINTER1.setAccessible(true);
         } catch (NoSuchFieldException ignored) {
             IMAGE_POINTER1 = null;
         }
