@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "slide_show",
+  "version": "${version}",
+  "name": "Slide Show",
+  "description": "Simple slide show projector in Minecraft.",
+  "authors": [
+    "3TUSK", "ustc_zzzz", "BloCamLimb", "Zbx1425"
+  ],
+  "contact": {
+    "homepage": "https://www.zbx1425.cn"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.teacon.slides.SlideShowClient"
+    ],
+    "main": [
+      "org.teacon.slides.SlideShow"
+    ]
+  },
+  "mixins": [
+
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.7",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
