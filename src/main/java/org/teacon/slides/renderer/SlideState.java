@@ -40,6 +40,7 @@ public final class SlideState {
     static {
         Field IMAGE_POINTER1;
         try {
+            // TODO: Use access widener, this only work on deobfuscated Minecraft
             IMAGE_POINTER1 = NativeImage.class.getDeclaredField("pixels");
             IMAGE_POINTER1.setAccessible(true);
         } catch (NoSuchFieldException ignored) {
