@@ -22,7 +22,5 @@ public class SlideShowClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(SlideShow.PROJECTOR_BLOCK, RenderType.cutout());
 
         ClientTickEvents.START_CLIENT_TICK.register(SlideState::tick);
-
-        ClientPlayNetworking.registerGlobalReceiver(SlideShow.CHANNEL_NAME, UpdateImageInfoPacket::handleClient);
     }
 }

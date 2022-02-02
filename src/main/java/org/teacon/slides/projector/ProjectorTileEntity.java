@@ -1,5 +1,6 @@
 package org.teacon.slides.projector;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,7 +29,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
 @ParametersAreNonnullByDefault
-public final class ProjectorTileEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
+public final class ProjectorTileEntity extends BlockEntity implements ExtendedScreenHandlerFactory, BlockEntityClientSerializable {
     private static final Component TITLE = new TranslatableComponent("gui.slide_show.title");
 
     public SlideData currentSlide = new SlideData();
@@ -128,4 +129,13 @@ public final class ProjectorTileEntity extends BlockEntity implements ExtendedSc
         return result;
     }
 
+    @Override
+    public void fromClientTag(CompoundTag tag) {
+        this.load(tag);
+    }
+
+    @Override
+    public CompoundTag toClientTag(CompoundTag tag) {
+        return this.save(new CompoundTag());
+    }
 }

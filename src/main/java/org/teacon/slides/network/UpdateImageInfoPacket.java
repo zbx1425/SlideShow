@@ -61,26 +61,12 @@ public final class UpdateImageInfoPacket {
                 BlockState newBlockState = world.getBlockState(packet.pos).setValue(ProjectorBlock.ROTATION, packet.rotation);
                 ((ProjectorTileEntity) tileEntity).currentSlide = packet.data;
                 world.setBlock(packet.pos, newBlockState, 0b0000001);
-                world.getChunkSource().blockChanged(packet.pos);
                 tileEntity.setChanged();
+                ((ProjectorTileEntity) tileEntity).sync();
             }
             // Silently drop invalid packets and log them
             GameProfile profile = player.getGameProfile();
             LOGGER.debug(MARKER, "Received invalid packet: player = {}, pos = {}", profile, packet.pos);
-        });
-    }
-
-    public static void handleClient(Minecraft client, ClientPacketListener handler, FriendlyByteBuf buf, PacketSender responseSender) {
-        UpdateImageInfoPacket packet = new UpdateImageInfoPacket(buf);
-        client.execute(() -> {
-            ClientLevel world = handler.getLevel();
-            BlockEntity tileEntity = world.getBlockEntity(packet.pos);
-            if (tileEntity instanceof ProjectorTileEntity) {
-                BlockState newBlockState = world.getBlockState(packet.pos).setValue(ProjectorBlock.ROTATION, packet.rotation);
-                ((ProjectorTileEntity) tileEntity).currentSlide = packet.data;
-                world.setBlock(packet.pos, newBlockState, 0b0000001);
-                tileEntity.setChanged();
-            }
         });
     }
 }
