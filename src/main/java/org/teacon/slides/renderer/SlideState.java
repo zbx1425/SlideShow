@@ -127,6 +127,8 @@ public final class SlideState {
                         mState = State.LOADED;
                     }
                 }).exceptionally(e -> {
+                    // ZBX FA
+                    SlideShow.LOGGER.fatal(e);
                     RenderSystem.recordRenderCall(() -> {
                         if (releaseOld) {
                             mSlide.close();

@@ -2,6 +2,8 @@ package org.teacon.slides.projector;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
@@ -217,6 +219,7 @@ public final class ProjectorBlock extends Block implements EntityBlock {
             vector.transform(mMatrix);
         }
 
+        @Environment(EnvType.CLIENT)
         public void transform(PoseStack pStack) {
             PoseStack.Pose last = pStack.last();
             last.pose().multiply(mMatrix);

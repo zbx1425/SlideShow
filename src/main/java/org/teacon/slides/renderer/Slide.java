@@ -4,6 +4,8 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +21,7 @@ import javax.annotation.Nonnull;
  *
  * @see SlideState
  */
+@Environment(EnvType.CLIENT)
 public abstract class Slide implements AutoCloseable {
 
     public abstract void render(@Nonnull MultiBufferSource source, @Nonnull Matrix4f matrix,

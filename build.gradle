@@ -7,6 +7,8 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+    mavenCentral()
+
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -25,6 +27,8 @@ dependencies {
 
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation 'org.apache.httpcomponents:httpclient-cache:4.3.6'
+
+    include 'org.apache.httpcomponents:httpclient-cache:4.3.6'
 }
 
 processResources {

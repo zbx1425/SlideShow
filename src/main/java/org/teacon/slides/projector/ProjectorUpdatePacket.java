@@ -1,6 +1,8 @@
 package org.teacon.slides.projector;
 
 import com.mojang.authlib.GameProfile;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -31,6 +33,7 @@ public final class ProjectorUpdatePacket {
     private final ProjectorBlock.InternalRotation mRotation;
     private final CompoundTag mTag;
 
+    @Environment(EnvType.CLIENT)
     public ProjectorUpdatePacket(ProjectorBlockEntity entity, ProjectorBlock.InternalRotation rotation) {
         mEntity = entity;
         mRotation = rotation;
@@ -49,6 +52,7 @@ public final class ProjectorUpdatePacket {
         buffer.writeNbt(mTag);
     }
 
+    @Environment(EnvType.CLIENT)
     public void sendToServer() {
         mPos = mEntity.getBlockPos();
         mEntity.writeCustomTag(mTag);
